@@ -70,7 +70,6 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   logout(): void {
-    // Clear any session or authentication tokens here
     console.log('Logout clicked');
     // Redirect to the login page
     this.router.navigate(['/login']); // Adjust the route as needed

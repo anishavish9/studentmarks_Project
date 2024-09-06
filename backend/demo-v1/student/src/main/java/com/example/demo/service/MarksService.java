@@ -18,11 +18,10 @@ public class MarksService {
 
     @Autowired
     private MarksRepository marksRepository;
-    
+
     @Autowired
     private UserRepository userRepository;
-    
-    
+
     public List<MarksEntity> getAllMarks() {
         return marksRepository.findAll();
     }
@@ -33,48 +32,34 @@ public class MarksService {
 
     public MarksEntity saveMarks(MarksEntity marks) {
     	int total = marks.getSem1()+marks.getSem2()+marks.getSem3();
-	    Optional<MarksEntity> existingUserById = marksRepository.findById(marks.getId());//userRepository.findById(user.getId());
-
+	    Optional<MarksEntity> existingUserById = marksRepository.findById(marks.getId());
     	if(existingUserById.isEmpty()) {
     	UserEntity user = userRepository.findById(marks.getId())
                 .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + marks.getId()));
-    	
-        System.out.println("User: "+user);
+        // System.out.println("User: "+user);
         marks.setUserName(user.getUserName());
         marks.setTotal(total);
         marks.setUser(user);
         return marksRepository.save(marks);
     	}
     	throw new MarksFoundException("Record already exist");
-        
     }
-    
+
     public MarksEntity updateMarks(MarksEntity marks) {
     	int total = marks.getSem1()+marks.getSem2()+marks.getSem3();
-	    //Optional<MarksEntity> existingUserById = marksRepository.findById(marks.getId());//userRepository.findById(user.getId());
-
-    	//if(existingUserById.isEmpty()) {
     	UserEntity user = userRepository.findById(marks.getId())
                 .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + marks.getId()));
-    	
-        System.out.println("User: "+user);
+        // System.out.println("User: "+user);
         marks.setUserName(user.getUserName());
         marks.setTotal(total);
         marks.setUser(user);
         return marksRepository.save(marks);
-    	//}
-    	//throw new MarksFoundException("Record already exist");
-        
     }
 
     public void deleteMarks(Long id) {
         marksRepository.deleteById(id);
     }
-    
-    private int getTotalMarks(MarksEntity marks) {
-    	return marks.getSem1()+marks.getSem2()+marks.getSem3();
-    }
-    
+
 	public List<MarksEntity> fetchMarksByUserId(Long id){
 		return marksRepository.findByUser_Id(id);
 	}

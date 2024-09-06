@@ -21,10 +21,9 @@ public class SecurityFilter extends OncePerRequestFilter {
         response.setHeader("Access-Control-Allow-Headers", "content-type");
         if("OPTIONS".equals(request.getMethod())) {
         	response.setStatus(HttpServletResponse.SC_OK);
-        } else { 
+        } else {
             filterChain.doFilter(request, response);
         }
-		
 	}
 
 }

@@ -17,7 +17,6 @@ export class AdminService {
 
   addStudent(student: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, student);
-   
   }
 
   updateStudent(student: any): Observable<any> {

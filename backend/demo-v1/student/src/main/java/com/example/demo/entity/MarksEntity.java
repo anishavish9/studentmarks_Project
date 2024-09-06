@@ -2,12 +2,10 @@ package com.example.demo.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,22 +14,22 @@ public class MarksEntity {
 
 	@Id
 	private Long id;
-	
+
 	@Column(name = "user_name", length = 20)
 	private String userName;
-	
+
 	private int sem1;
-	
+
 	private int sem2;
-	
+
 	private int sem3;
-	
+
 	private int total;
-	
+
 	@ManyToOne
     @JoinColumn(name = "user_id")
 	private UserEntity user;
-			
+
 	public Long getId() {
 		return id;
 	}
@@ -39,7 +37,7 @@ public class MarksEntity {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getUserName() {
 		return userName;
 	}
@@ -87,6 +85,5 @@ public class MarksEntity {
 	public void setUser(UserEntity user) {
 		this.user = user;
 	}
-	
 }
 

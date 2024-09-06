@@ -18,19 +18,16 @@ export class StudentService {
   }
 
   updateStudent(student: any): Observable<any> {
-    // Implement actual update logic here
     console.log('Updating student', student);
     return of(student); // Mock implementation
   }
 
   addStudent(student: any): Observable<any> {
-    // Implement actual add logic here
     console.log('Adding new student', student);
     return of(student); // Mock implementation
   }
 
   deleteStudent(rollNo: string): Observable<any> {
-    // Implement actual delete logic here
     console.log('Deleting student with rollNo', rollNo);
     return of({}); // Mock implementation
   }

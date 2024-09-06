@@ -17,7 +17,7 @@ public class MarksController {
 
      @Autowired
      private MarksService marksService;
-     
+
      @Autowired
      private UserService userService;
 
@@ -25,7 +25,7 @@ public class MarksController {
      public List<MarksEntity> getAllMarks() {
          return marksService.getAllMarks();
      }
-	 
+
      @GetMapping("/marks/{id}")
      public ResponseEntity<MarksEntity> getMarksById(@PathVariable Long id) {
          Optional<MarksEntity> marks = marksService.getMarksById(id);
@@ -59,8 +59,7 @@ public class MarksController {
          marksService.deleteMarks(id);
          return ResponseEntity.noContent().build();
      }
-     
-     
+
      //delete user in user table , his/her marks details from marks table
      @DeleteMapping("/user/delete/{id}")
      public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
@@ -71,11 +70,10 @@ public class MarksController {
          marksService.deleteMarks(id);
          return ResponseEntity.noContent().build();
      }
-     
+
      // get user by id all marks
      @GetMapping("/user/{id}")
      public ResponseEntity<List<MarksEntity>> getAllMarksByUserId(@PathVariable Long id){
     	 return ResponseEntity.ok(marksService.fetchMarksByUserId(id));
      }
-    
 }
